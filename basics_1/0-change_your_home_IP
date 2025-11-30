@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Change DNS resolutions
 
-# Remove existing localhost entries and add new ones
-grep -v "localhost" /etc/hosts > /tmp/hosts.tmp
-echo -e "127.0.0.2\tlocalhost" >> /tmp/hosts.tmp
-echo -e "8.8.8.8\tfacebook.com" >> /tmp/hosts.tmp
-mv /tmp/hosts.tmp /etc/hosts
+# Create completely new hosts file
+cat > /etc/hosts << EOF
+127.0.0.2    localhost
+::1          localhost ip6-localhost ip6-loopback
+8.8.8.8      facebook.com
+EOF
